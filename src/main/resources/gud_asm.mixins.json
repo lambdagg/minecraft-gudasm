@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "net.gudenau.minecraft.asm.mixin",
   "compatibilityLevel": "JAVA_8",
-  "plugin": "net.gudenau.minecraft.asm.mixin.Plugin",
+  "plugin": "xyz.lambdagg.gudasm.mixin.Plugin",
   "mixins": [],
   "client": [],
   "injectors": {

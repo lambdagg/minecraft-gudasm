@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.gudenau.minecraft.asm.GudAsm"
+        "xyz.lambdagg.gudasm.GudAsm"
     ]
   },
   "mixins": [
