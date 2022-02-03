@@ -167,13 +167,11 @@ public class ASMMixinTransformer implements IMixinTransformer {
 
     @Override
     public byte[] transformClass(MixinEnvironment environment, String name, byte[] classBytes) {
-        System.out.println("OwO " + name + " " + environment.toString());
         return this.parent.transformClass(environment, name, classBytes);
     }
 
     @Override
     public boolean transformClass(MixinEnvironment environment, String name, ClassNode classNode) {
-        System.out.println("UwU " + name + " " + environment.toString());
         return this.parent.transformClass(environment, name, classNode);
     }
 
