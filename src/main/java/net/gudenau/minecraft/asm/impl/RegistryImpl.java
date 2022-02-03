@@ -1,76 +1,73 @@
 package net.gudenau.minecraft.asm.impl;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-import net.gudenau.minecraft.asm.api.v1.ClassCache;
 import net.gudenau.minecraft.asm.api.v1.AsmRegistry;
+import net.gudenau.minecraft.asm.api.v1.ClassCache;
 import net.gudenau.minecraft.asm.api.v1.Identifier;
 import net.gudenau.minecraft.asm.api.v1.Transformer;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 // Basic registry implementation
-public class RegistryImpl implements AsmRegistry{
+public class RegistryImpl implements AsmRegistry {
     public static final RegistryImpl INSTANCE = new RegistryImpl();
-    
+
     private final List<Transformer> earlyTransformers = new LinkedList<>();
     private final List<Transformer> transformers = new LinkedList<>();
     private final List<ClassCache> classCaches = new LinkedList<>();
     private final Set<String> blacklist = new HashSet<>();
-    
+
     private volatile Boolean frozen = null;
-    
-    private RegistryImpl(){}
-    
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+    private Optional<ClassCache> cache;
+
+    private RegistryImpl() {
+    }
+
     @Override
-    public void registerEarlyTransformer(Transformer transformer){
-        if(frozen == null || frozen){
+    public void registerEarlyTransformer(Transformer transformer) {
+        if (frozen == null || frozen) {
             throw new RuntimeException("Attempted to register transformer outside initializer");
         }
         blacklist.add(transformer.getClass().getPackage().getName());
         earlyTransformers.add(transformer);
     }
-    
+
     @Override
-    public void registerTransformer(Transformer transformer){
-        if(frozen == null || frozen){
+    public void registerTransformer(Transformer transformer) {
+        if (frozen == null || frozen) {
             throw new RuntimeException("Attempted to register transformer outside initializer");
         }
         blacklist.add(transformer.getClass().getPackage().getName());
         transformers.add(transformer);
     }
-    
+
     @Override
-    public void registerClassCache(ClassCache cache){
-        if(frozen == null || frozen){
+    public void registerClassCache(ClassCache cache) {
+        if (frozen == null || frozen) {
             throw new RuntimeException("Attempted to register class cache outside initializer");
         }
         blacklist.add(cache.getClass().getPackage().getName());
         classCaches.add(cache);
     }
-    
-    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-    private Optional<ClassCache> cache;
-    
+
     @SuppressWarnings("OptionalAssignedToNull")
-    public Optional<ClassCache> getCache(){
-        if(cache == null){
-            if(classCaches.isEmpty() || !Configuration.ENABLE_CACHE.get()){
+    public Optional<ClassCache> getCache() {
+        if (cache == null) {
+            if (classCaches.isEmpty() || !Configuration.ENABLE_CACHE.get()) {
                 cache = Optional.empty();
-            }else{
+            } else {
                 String enabled = Configuration.ENABLED_CACHE.get();
-                if(enabled != null){
+                if (enabled != null) {
                     Optional<ClassCache> existing = classCaches.stream()
-                        .filter((c)->c.getName().toString().equals(enabled))
-                        .findAny();
-                    if(existing.isPresent()){
+                            .filter((c) -> c.getName().toString().equals(enabled))
+                            .findAny();
+                    if (existing.isPresent()) {
                         cache = existing;
                         return existing;
                     }
                 }
-                
+
                 ClassCache newCache = classCaches.get(0);
                 Configuration.ENABLED_CACHE.set(newCache.getName().toString());
                 cache = Optional.of(newCache);
@@ -78,30 +75,30 @@ public class RegistryImpl implements AsmRegistry{
         }
         return cache;
     }
-    
-    public List<String> getCacheNames(){
+
+    public List<String> getCacheNames() {
         return classCaches.stream().map(ClassCache::getName).map(Identifier::toString).collect(Collectors.toList());
     }
-    
-    public List<Transformer> getTransformers(){
+
+    public List<Transformer> getTransformers() {
         return transformers;
     }
-    
-    public List<Transformer> getEarlyTransformers(){
+
+    public List<Transformer> getEarlyTransformers() {
         return earlyTransformers;
     }
-    
+
     @SuppressWarnings("NonAtomicOperationOnVolatileField")
-    public void setFrozen(boolean frozen){
-        if(this.frozen == null){
+    public void setFrozen(boolean frozen) {
+        if (this.frozen == null) {
             this.frozen = frozen;
-        }else{
+        } else {
             this.frozen |= frozen;
         }
     }
-    
-    public void setTransformer(MixinTransformer transformer){
-        for(String pack : blacklist){
+
+    public void setTransformer(ASMMixinTransformer transformer) {
+        for (String pack : blacklist) {
             transformer.blacklistPackage(pack);
         }
     }

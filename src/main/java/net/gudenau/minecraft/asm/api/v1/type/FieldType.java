@@ -1,23 +1,27 @@
 package net.gudenau.minecraft.asm.api.v1.type;
 
-import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.Type;
 
+import java.util.Objects;
+
 /**
  * A simple field type that contains the fully qualified type of a field.
- *
+ * <p>
  * This contains:
- *  - The owner type
- *  - The field name
- *  - The field descriptor
+ * - The owner type
+ * - The field name
+ * - The field descriptor
  */
-public final class FieldType{
-    @NotNull private final Type owner;
-    @NotNull private final String name;
-    @NotNull private final Type descriptor;
+public final class FieldType {
+    @NotNull
+    private final Type owner;
+    @NotNull
+    private final String name;
+    @NotNull
+    private final Type descriptor;
 
-    public FieldType(@NotNull Type owner, @NotNull String name, @NotNull Type descriptor){
+    public FieldType(@NotNull Type owner, @NotNull String name, @NotNull Type descriptor) {
         this.owner = owner;
         this.name = name;
         this.descriptor = descriptor;
@@ -29,7 +33,7 @@ public final class FieldType{
      * @return The owner
      */
     @NotNull
-    public Type getOwner(){
+    public Type getOwner() {
         return owner;
     }
 
@@ -39,7 +43,7 @@ public final class FieldType{
      * @return The name
      */
     @NotNull
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -49,27 +53,27 @@ public final class FieldType{
      * @return The descriptor
      */
     @NotNull
-    public Type getDescriptor(){
+    public Type getDescriptor() {
         return descriptor;
     }
 
     @Override
-    public boolean equals(Object o){
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
-        FieldType that = (FieldType)o;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FieldType that = (FieldType) o;
         return Objects.equals(owner, that.owner) &&
-            Objects.equals(name, that.name) &&
-            Objects.equals(descriptor, that.descriptor);
+                Objects.equals(name, that.name) &&
+                Objects.equals(descriptor, that.descriptor);
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Objects.hash(owner, name, descriptor);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return owner.getInternalName() + '.' + name + ' ' + descriptor.getInternalName();
     }
 }
