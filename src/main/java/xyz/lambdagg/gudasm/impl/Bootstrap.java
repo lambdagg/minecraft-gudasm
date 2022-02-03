@@ -60,8 +60,8 @@ public class Bootstrap {
 
         try {
             // Get classes we can't normally access
-            Class<? extends ClassLoader> KnotClassLoader = ReflectionHelper.loadClass(classLoader, "net.fabricmc.loader.launch.knot.KnotClassLoader");
-            Class<?> KnotClassDelegate = ReflectionHelper.loadClass(classLoader, "net.fabricmc.loader.launch.knot.KnotClassDelegate");
+            Class<? extends ClassLoader> KnotClassLoader = ReflectionHelper.loadClass(classLoader, "net.fabricmc.loader.impl.launch.knot.KnotClassLoader");
+            Class<?> KnotClassDelegate = ReflectionHelper.loadClass(classLoader, "net.fabricmc.loader.impl.launch.knot.KnotClassDelegate");
 
             // Get the class delegate
             MethodHandle KnotClassLoader$delegate$getter = ReflectionHelper.findGetter(KnotClassLoader, classLoader, "delegate", KnotClassDelegate);
