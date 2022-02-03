@@ -1,9 +1,9 @@
 package xyz.lambdagg.gudasm.mixin;
 
-import xyz.lambdagg.gudasm.impl.Bootstrap;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
+import xyz.lambdagg.gudasm.impl.Bootstrap;
 
 import java.util.List;
 import java.util.Set;

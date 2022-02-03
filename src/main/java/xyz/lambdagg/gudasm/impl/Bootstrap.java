@@ -2,11 +2,11 @@ package xyz.lambdagg.gudasm.impl;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.entrypoint.EntrypointContainer;
+import org.spongepowered.asm.mixin.MixinEnvironment;
+import org.spongepowered.asm.mixin.transformer.IMixinTransformer;
 import xyz.lambdagg.gudasm.api.v1.AsmInitializer;
 import xyz.lambdagg.gudasm.api.v1.ClassCache;
 import xyz.lambdagg.gudasm.util.FileUtils;
-import org.spongepowered.asm.mixin.MixinEnvironment;
-import org.spongepowered.asm.mixin.transformer.IMixinTransformer;
 
 import java.io.IOException;
 import java.lang.invoke.MethodHandle;

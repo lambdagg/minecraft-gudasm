@@ -1,10 +1,6 @@
 package xyz.lambdagg.gudasm.impl;
 
 import net.fabricmc.loader.api.FabricLoader;
-import xyz.lambdagg.gudasm.api.v1.AsmUtils;
-import xyz.lambdagg.gudasm.api.v1.ClassCache;
-import xyz.lambdagg.gudasm.api.v1.Transformer;
-import xyz.lambdagg.gudasm.util.Locker;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Type;
@@ -12,6 +8,10 @@ import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.MixinEnvironment;
 import org.spongepowered.asm.mixin.transformer.IMixinTransformer;
 import org.spongepowered.asm.mixin.transformer.ext.IExtensionRegistry;
+import xyz.lambdagg.gudasm.api.v1.AsmUtils;
+import xyz.lambdagg.gudasm.api.v1.ClassCache;
+import xyz.lambdagg.gudasm.api.v1.Transformer;
+import xyz.lambdagg.gudasm.util.Locker;
 
 import java.io.IOException;
 import java.io.OutputStream;

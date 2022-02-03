@@ -1,13 +1,12 @@
 package xyz.lambdagg.gudasm.impl;
 
-import xyz.lambdagg.gudasm.api.v1.AsmUtils;
-import xyz.lambdagg.gudasm.api.v1.Identifier;
-import xyz.lambdagg.gudasm.api.v1.Transformer;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
-import xyz.lambdagg.gudasm.api.v1.annotation.ForceInline;
+import xyz.lambdagg.gudasm.api.v1.AsmUtils;
+import xyz.lambdagg.gudasm.api.v1.Identifier;
+import xyz.lambdagg.gudasm.api.v1.Transformer;
 
 import java.util.List;
 

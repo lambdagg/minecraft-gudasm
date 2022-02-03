@@ -1,7 +1,7 @@
 package xyz.lambdagg.gudasm.impl;
 
-import xyz.lambdagg.gudasm.api.v1.Transformer;
 import org.objectweb.asm.ClassWriter;
+import xyz.lambdagg.gudasm.api.v1.Transformer;
 
 public class TransformerFlagsImpl implements Transformer.Flags {
     private boolean computeMaxes = false;

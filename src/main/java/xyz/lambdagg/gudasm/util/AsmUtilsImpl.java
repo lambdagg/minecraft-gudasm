@@ -2,14 +2,14 @@ package xyz.lambdagg.gudasm.util;
 
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
-import xyz.lambdagg.gudasm.api.v1.functional.BooleanFunction;
-import xyz.lambdagg.gudasm.api.v1.type.FieldType;
-import xyz.lambdagg.gudasm.api.v1.type.MethodType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
 import xyz.lambdagg.gudasm.api.v1.AsmUtils;
+import xyz.lambdagg.gudasm.api.v1.functional.BooleanFunction;
+import xyz.lambdagg.gudasm.api.v1.type.FieldType;
+import xyz.lambdagg.gudasm.api.v1.type.MethodType;
 
 import java.util.*;
 
