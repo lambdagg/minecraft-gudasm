@@ -7,6 +7,7 @@ import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
+import xyz.lambdagg.gudasm.api.v1.annotation.ForceInline;
 
 import java.util.List;
 
